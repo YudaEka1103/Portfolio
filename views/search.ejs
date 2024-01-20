@@ -1,0 +1,14 @@
+<div class="container mx-auto my-8 px-4">
+  <h1 class="text-3xl font-semibold mb-4">Search Results</h1>
+
+  <section class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <% data.forEach(post => { %>
+          <a href="/post/<%= post._id %>" class="bg-white shadow-md rounded-md overflow-hidden block hover:bg-gray-100 hover:text-blue-500 transition duration-300">
+              <div class="py-3 px-4">
+                  <span class="text-lg font-semibold"><%= post.title %></span>
+                  <span class="text-gray-500 block"><%= post.createdAt.toDateString() %></span>
+              </div>
+          </a>
+      <% }) %>
+  </section>
+</div>

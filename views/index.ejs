@@ -1,20 +1,58 @@
-<div class="md:flex md:items-center md:justify-center">
-    <div class="md:w-1/2 md:mr-6">
-        <h1 class="text-3xl md:text-5xl mb-2">Hi, I am Yuda.</h1>
-        <p class="text-lg">Web Development and Gamers</p>
-    </div>
-    <img src="/img/hero-image.webp" alt="person looking out through window" class="w-full md:w-2/5 h-1/5 max-h-lvh overflow-hidden drop-shadow-md rounded-sm mt-4 md:mt-0">
-</div>
+<div class="container mx-auto my-8 px-4">
+    <!-- Tampilan Desktop -->
+    <div class="hidden md:block">
+        <div class="md:flex md:items-center md:justify-center">
+            <div class="md:w-1/2 md:mr-6">
+                <h1 class="text-3xl md:text-5xl font-semibold mb-2">Hi, I am Yuda.</h1>
+                <p class="text-lg">Passionate about Web Development and Gaming.</p>
+            </div>
+            <img src="/img/hero-image.webp" alt="person looking out through window" class="w-full md:w-2/5 h-1/5 max-h-lvh overflow-hidden filter drop-shadow-lg rounded-md mt-4 md:mt-0 opacity-90 animate-slide-up">
+        </div>
 
-<section class="mt-8">
-    <h2 class="text-2xl md:text-3xl mb-4">Latest Posts</h2>
-    <ul class="space-y-4">
-        <li>
-            <a href="#" class="block">
-                <span class="text-lg">Post Title</span>
-                <span class="text-gray-500">Date</span>
-            </a>
-        </li>
-    </ul>
-    <a href="#" class="text-blue-500">View Older Posts</a>
-</section>
+        <!-- Latest Posts - Desktop -->
+        <section class="md:mt-8 md:px-10 animate-fade-in desktop-latest-posts">
+            <h2 class="text-2xl md:text-3xl mb-4">Latest Posts</h2>
+            <ul class="space-y-4">
+                <% data.forEach(post => { %>
+                    <li>
+                        <a href="/post/<%= post._id %>" class="bg-white py-2 px-4 hover:bg-gray-100 hover:text-blue-500 transition duration-300 block">
+                            <span class="text-lg font-semibold block"><%= post.title %></span>
+                            <span class="text-gray-500 block border-b"><%= post.createdAt.toDateString() %></span>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+            <% if (nextPage !== null) { %>
+                <a href="/?page=<%= nextPage %>" class="text-blue-500 block mt-4">View Older Posts</a>
+            <% } %>
+        </section>
+    </div>
+
+    <!-- Tampilan Tablet dan Mobile -->
+    <div class="md:hidden my-5">
+        <!-- Tampilan Tablet -->
+        <div class="bg-white p-4 text-center animate-fade-in">
+            <h1 class="text-2xl font-semibold mb-2">Hi, I am Yuda.</h1>
+            <p class="text-base text-gray-500">Passionate about Web Development and Gaming.</p>
+            <img src="/img/hero-image.webp" alt="person looking out through window" class="mx-auto mt-4 mb-2 w-3/4 h-56 object-cover rounded-md filter drop-shadow-lg opacity-90 animate-slide-up">
+        </div>
+
+        <!-- Latest Posts - Mobile -->
+        <section class="mt-8 px-4 animate-fade-in mobile-latest-posts">
+            <h2 class="text-2xl md:text-3xl mb-4">Latest Posts</h2>
+            <ul class="space-y-4">
+                <% data.forEach(post => { %>
+                    <li>
+                        <a href="/post/<%= post._id %>" class="bg-white py-3 px-4 block">
+                            <span class="text-lg font-semibold block"><%= post.title %></span>
+                            <span class="text-gray-500 block border-b"><%= post.createdAt.toDateString() %></span>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+            <% if (nextPage !== null) { %>
+                <a href="/?page=<%= nextPage %>" class="text-blue-500 block mt-4">View Older Posts</a>
+            <% } %>
+        </section>
+    </div>
+</div>
